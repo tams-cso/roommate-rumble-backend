@@ -2,6 +2,20 @@
 
 This is the backend for the TAMS Roommate Rumble web application.
 
+## Dev Setup
+
+1. Make sure you have python3 installed
+2. run the setup script
+    - run setup.sh if on linux / OS X
+    - run setup.bat on windows
+3. You have a flask python3 environment set up!
+
+Make sure you use the bins from the /env folder made by the setup script.
+
+run `source env/bin/activate` on linux / OS X
+or
+run `env\Scripts\activate.bat` on windows to automatically use the env bins.
+
 ## Algorithm
 
 1. preload all user information (or preload computations if already done)
