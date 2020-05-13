@@ -16,7 +16,7 @@ distance = sqrt(wx^2 * wx^2 * ... * wx^2 * wx^2) where each wx is a distinct inp
 ## API Documentation
 
 ### /login
-The login endpoint. This is not fully figured out yet). TODO
+The login endpoint. (This is not fully figured out yet). TODO
 
 ### /fetch
 
