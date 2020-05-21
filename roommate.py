@@ -12,13 +12,15 @@ class Student:
     """Store a student's responses."""
 
     # Weights for distance function
-    W_BEDTIME = 1
-    W_WAKE_TIME = 1
-    W_SLEEP_ENV = 1
-    W_VISITORS = 1
-    W_NEATNESS = 1
-    W_FLOOR_COV = 1
-    W_SHARING = 1
+    weights = {
+        "bedtime": 1,
+        "wake_time": 1,
+        "sleep_env": 1,
+        "visitors": 1,
+        "neatness": 1,
+        "floor_cov": 1,
+        "sharing": 1,
+    }
 
     def __init__(self, line):
         """
@@ -42,7 +44,7 @@ class Student:
     def distance(self, o):
         """
         Return the relative distance between the current and another
-        Student as a floating-point value. First, all quantifiable traits
+        Student as a floating-point value. First, all trait differences
         are normalized to a [0, 1] scale, except for bedtime, which
         ranges over [0, 12] so that a one-hour difference would
         translate to one distance unit. This should make it easier to
