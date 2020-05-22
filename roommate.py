@@ -1,13 +1,15 @@
 import csv
 import math
+from array import *
+
 
 class Student:
     """Store a student's responses."""
 
     # Weights for distance function
     WEIGHTS = {
-        "bedtime": 12, # So a one-hour difference in bedtime translates
-                       # to one distance unit
+        "bedtime": 12,  # So a one-hour difference in bedtime translates
+        # to one distance unit
         "wake_time": 1,
         "sleep_env": 1,
         "visitors": 1,
@@ -66,30 +68,30 @@ class Student:
         if "Early" in self.wake_time:
             traits["wake_time"] = 0
         elif "Just in time" in self.wake_time:
-            traits["wake_time"] = 1/2
+            traits["wake_time"] = 1 / 2
         else:
             traits["wake_time"] = 1
 
         if "absolutely quiet" in self.sleep_env:
             traits["sleep_env"] = 0
         elif "TV or music" in self.sleep_env:
-            traits["sleep_env"] = 1/3
+            traits["sleep_env"] = 1 / 3
         elif "visitors" in self.sleep_env:
-            traits["sleep_env"] = 2/3
+            traits["sleep_env"] = 2 / 3
         else:
             traits["sleep_env"] = 1
 
         if "No one" in self.visitors:
             traits["visitors"] = 0
         elif "few" in self.visitors:
-            traits["visitors"] = 1/2
+            traits["visitors"] = 1 / 2
         else:
             traits["visitors"] = 1
 
         if "Always" in self.neatness:
             traits["neatness"] = 0
         elif "most" in self.neatness:
-            traits["neatness"] = 1/2
+            traits["neatness"] = 1 / 2
         else:
             traits["neatness"] = 1
 
@@ -98,7 +100,7 @@ class Student:
         if "stuff is mine" in self.sharing:
             traits["sharing"] = 0
         elif "Willing to share" in self.sharing:
-            traits["sharing"] = 1/2
+            traits["sharing"] = 1 / 2
         else:
             traits["sharing"] = 1
 
@@ -108,6 +110,54 @@ class Student:
         """Return the name of the Student."""
         return self.name
 
+
+def getdistances():
+    students = []
+    with open("data.csv") as data:
+        data.readline()  # Skip header
+        reader = csv.reader(data)
+        for row in reader:
+            students.append(Student(row))
+
+    # Generate dict of matches from closest to furthest
+    distances = {}
+    for student in students:
+        row = {}
+        for other in students:
+            row[other.name] = student.distance(other)
+        # Sort dict by distance
+        # distances[student.name] = \
+        #   {k: v for k, v in sorted(row.items(), key=lambda item: item[1])}
+    return distances
+
+
+def getresults():
+    students = []
+    with open("data.csv") as data:
+        data.readline()  # Skip header
+        reader = csv.reader(data)
+        for row in reader:
+            students.append(Student(row))
+
+    # Generate dict of matches from closest to furthest
+    distances = {}
+    for student in students:
+        row = {}
+        for other in students:
+            row[other.name] = student.distance(other)
+        # Sort dict by distance
+        distances[student.name] = \
+            {k: v for k, v in sorted(row.items(), key=lambda item: item[1])}
+
+    results = []
+    for student in distances:
+        row = [student]
+        for other in distances[student]:
+            row.append(other)
+        results.append(row)
+    return results
+
+
 if __name__ == "__main__":
     """
     This section actually runs the algorithm and exports the data
@@ -116,7 +166,7 @@ if __name__ == "__main__":
     # Read and store student data
     students = []
     with open("data.csv") as data:
-        data.readline() # Skip header
+        data.readline()  # Skip header
         reader = csv.reader(data)
         for row in reader:
             students.append(Student(row))
