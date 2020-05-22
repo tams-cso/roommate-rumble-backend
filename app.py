@@ -12,5 +12,3 @@ def fetch():
 @app.route('/taken', methods=['POST'])
 def taken():
     return 'TODO!'
-
-
