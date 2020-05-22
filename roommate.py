@@ -1,15 +1,3 @@
-"""
-roommate.py - roommate matching library
-
-The overall data, algorithm, and presentation are self-contained and
-decoupled so each individual section can be reused, refactored, and
-reincorporated into a real app later if needed.
-
-However, the logic itself is tightly coupled to the form schema, where
-one change there will necessitate edits in the weights, constructor,
-and normalization function. I am not sure if there is a way around this.
-"""
-
 import csv
 import math
 
@@ -139,14 +127,15 @@ if __name__ == "__main__":
         row = {}
         for other in students:
             row[other.name] = student.distance(other)
+        # Sort dict by distance
         distances[student.name] = \
             {k: v for k, v in sorted(row.items(), key=lambda item: item[1])}
 
-    # Write top 10 matches into another CSV
+    # Write matches in increasing distances
     with open("results.csv", mode="w") as results:
         writer = csv.writer(results)
         for student in distances:
-            row = []
+            row = [student]
             for other in distances[student]:
                 row.append(other + '(' + str(distances[student][other]) + ')')
             writer.writerow(row)
