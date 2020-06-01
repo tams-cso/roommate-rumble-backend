@@ -2,11 +2,12 @@ import csv
 
 from roommate import Student
 
-FILENAME = "room_habits_questionnaire.tsv"
+IN_FILENAME = "room_habits_questionnaire.tsv"
+OUT_FILENAME = "output.csv"
 
 students = []
 
-with open(FILENAME) as csvf:
+with open(IN_FILENAME) as csvf:
     reader = csv.reader(csvf, delimiter="\t")
     next(reader)
     next(reader)
@@ -37,4 +38,16 @@ with open(FILENAME) as csvf:
         )
 
     for s in students:
-        print("{}: {}".format(s, s.getDistanceList([x for x in students if x is not s])))
+        print(
+            "{}: {}".format(s, s.getDistanceList([x for x in students if x is not s]))
+        )
+
+with open(OUT_FILENAME, "w+") as csvo:
+    writer = csv.writer(csvo)
+    writer.writerow(
+        ["Name", "Names of recommended people from most to least recommended"]
+    )
+    for s in students:
+        writer.writerow(
+            [s.name] + s.getDistanceList([x for x in students if x is not s])
+        )

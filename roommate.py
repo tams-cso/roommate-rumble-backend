@@ -109,7 +109,8 @@ class Student:
         """ Takes in an array of Students and returns sorted list of best matches (best --> worst) """
         dists = []
         for s in others:
-            dists.append((s.name, self.dist(s)))
+            if self.gender == s.gender:
+                dists.append((s.name, self.dist(s)))
 
         sorted_list = sorted(dists, key=lambda x: x[1], reverse=True)
         return [x[0] for x in sorted_list]
@@ -117,4 +118,3 @@ class Student:
     def __str__(self):
         """ Returns name to print out """
         return self.name
-
