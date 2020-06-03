@@ -99,7 +99,7 @@ class Student:
 
         sum = 0
         for key in self.traits.keys():
-            weight = WEIGHTS.get(key, 1)  # defaults to a weight of 1
+            weight = self.WEIGHTS.get(key, 1)  # defaults to a weight of 1
             diff_sq = abs(self.traits[key] - other.traits[key]) ** 2
             sum += weight * diff_sq
 
@@ -112,7 +112,7 @@ class Student:
             if self.gender == s.gender:
                 dists.append((s.name, self.dist(s)))
 
-        sorted_list = sorted(dists, key=lambda x: x[1], reverse=True)
+        sorted_list = sorted(dists, key=lambda x: x[1])
         return [x[0] for x in sorted_list]
 
     def __str__(self):
