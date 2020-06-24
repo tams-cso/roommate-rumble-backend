@@ -47,24 +47,24 @@ class Student:
             "After midnight",
             "Before 2:00 AM",
             "After 2:00 AM",
-        ].index(goes_to_bed) + 1
+        ].index(goes_to_bed.strip()) + 1
         self.traits["waketime"] = [
             "Doesn't matter",
             "Early, with time to spare",
             "Just in time to get to class",
-        ].index(gets_up) + 1
+        ].index(gets_up.strip()) + 1
         self.traits["to_sleep"] = [
             "Doesn't matter",
             "The room has to be dark",
             "At least one light must be on",
             "Blinds open to let the morning sun in",
-        ].index(to_go_to_sleep) + 1
+        ].index(to_go_to_sleep.strip()) + 1
         self.traits["cannot_sleep"] = [
             "I can sleep through anything",
             "With a TV or music on",
             "If my roommate has visitors in the room",
             "Unless it is absolutely quiet",
-        ].index(cannot_go_to_sleep) + 1
+        ].index(cannot_go_to_sleep.strip()) + 1
         self.traits["gaming"] = int(gaming)
         self.traits["social_net"] = int(social_net)
         self.traits["phone"] = int(phone)
@@ -77,18 +77,20 @@ class Student:
             "Neat most of the time",
             "Cluttered most of the time",
             "Always messy and disorganized",
-        ].index(personal_space) + 1
+        ].index(personal_space.strip()) + 1
         self.traits["percent_floor"] = int(percent_floor)
         self.traits["sharing"] = [
             "What's mine is yours and vice versa",
             "Willing to share most stuff if I'm asked first",
             "Willing to share certain items only",
             "Not comfortable sharing my stuff",
-        ].index(sharing) + 1
+        ].index(sharing.strip()) + 1
         self.traits["brings"] = [
+            "",
             "Anyone into my room. My room is a social area.",
             "Only a few people into my room.",
-        ].index(brings) + 1
+            "No one in my room. My room is only for myself and my roommate.",
+        ].index(brings.strip()) + 1
 
     def dist(self, other):
         """ Returns Euclidian distance between self and other """

@@ -2,13 +2,13 @@ import csv
 
 from roommate import Student
 
-IN_FILENAME = "room_habits_questionnaire.tsv"
+IN_FILENAME = "room_habits_questionnaire.csv"
 OUT_FILENAME = "output.csv"
 
 students = []
 
 with open(IN_FILENAME) as csvf:
-    reader = csv.reader(csvf, delimiter="\t")
+    reader = csv.reader(csvf, delimiter=",")
     next(reader)
     next(reader)
     next(reader)  # skip first three lines
