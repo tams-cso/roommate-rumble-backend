@@ -42,7 +42,7 @@ with open(IN_FILENAME) as csvf:
             "{}: {}".format(s, s.getDistanceList([x for x in students if x is not s]))
         )
 
-with open(OUT_FILENAME, "w+") as csvo:
+with open(OUT_FILENAME, "w+", newline="") as csvo:
     writer = csv.writer(csvo)
     writer.writerow(
         ["Name", "Names of recommended people from most to least recommended"]

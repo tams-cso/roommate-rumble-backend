@@ -78,7 +78,7 @@ class Student:
             "Cluttered most of the time",
             "Always messy and disorganized",
         ].index(personal_space.strip()) + 1
-        self.traits["percent_floor"] = int(percent_floor)
+        self.traits["percent_floor"] = int(percent_floor.strip(" %"))
         self.traits["sharing"] = [
             "What's mine is yours and vice versa",
             "Willing to share most stuff if I'm asked first",
