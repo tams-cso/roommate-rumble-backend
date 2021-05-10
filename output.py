@@ -47,6 +47,7 @@ with open(OUT_FILENAME, "w+", newline="") as csvo:
     writer.writerow(
         ["Name", "Names of recommended people from most to least recommended"]
     )
+    students.sort(key=(lambda s: s.name.split()[1])) #sort by last name
     for s in students:
         writer.writerow(
             [s.name] + s.getDistanceList([x for x in students if x is not s])
