@@ -2,38 +2,37 @@ import csv
 
 from roommate import Student
 
-IN_FILENAME = "room_habits_questionnaire.csv"
-OUT_FILENAME = "output.csv"
+IN_FILENAME = "2024_males.csv"
+OUT_FILENAME = "2024_males.csv"
 
 students = []
 
-with open(IN_FILENAME) as csvf:
-    reader = csv.reader(csvf, delimiter=",")
+with open(IN_FILENAME, encoding='latin-1') as csv_file:
+    reader = csv.reader(csv_file, delimiter=",")
     next(reader)
-    next(reader)
-    next(reader)  # skip first three lines
+    # skip first three lines
 
     for row in reader:
         students.append(
             Student(
-                first_name=row[9],
-                last_name=row[10],
-                gender=row[12],
-                goes_to_bed=row[13],
-                gets_up=row[14],
-                to_go_to_sleep=row[15],
-                cannot_go_to_sleep=row[16],
-                gaming=row[21],
-                social_net=row[22],
-                phone=row[23],
-                sleeping=row[24],
-                studying=row[25],
-                tv=row[26],
-                exercising=row[27],
-                personal_space=row[28],
-                percent_floor=row[29],
-                sharing=row[30],
-                brings=row[31],
+                first_name=row[1],
+                last_name=row[2],
+                gender=row[4],
+                goes_to_bed=row[5],
+                gets_up=row[6],
+                to_go_to_sleep=row[7],
+                cannot_go_to_sleep=row[8],
+                gaming=row[13],
+                social_net=row[14],
+                phone=row[15],
+                sleeping=row[16],
+                studying=row[17],
+                tv=row[18],
+                exercising=row[19],
+                personal_space=row[20],
+                percent_floor=row[21],
+                sharing=row[22],
+                brings=row[23],
             )
         )
 
